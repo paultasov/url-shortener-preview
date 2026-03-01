@@ -1,0 +1,321 @@
+/* URL INPUT COMPONENT */
+
+.urlForm {
+  width: 100%;
+}
+
+.urlInputWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.urlInputLabel {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--clr-txt-3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.urlInputFieldWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.urlInputIcon {
+  position: absolute;
+  left: var(--space-4);
+  display: flex;
+  align-items: center;
+  color: var(--clr-txt-3);
+  pointer-events: none;
+  transition: color var(--dur-base) var(--ease-smooth);
+  z-index: 1;
+}
+
+.urlInputFieldWrap:focus-within .urlInputIcon {
+  color: var(--clr-cyan);
+}
+
+.urlInputField {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--clr-txt-1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--clr-border-md);
+  border-radius: var(--radius-lg);
+  padding: 14px 52px 14px 48px;
+  outline: none;
+  transition:
+    border-color var(--dur-base) var(--ease-smooth),
+    background var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth);
+  caret-color: var(--clr-cyan);
+  box-shadow: var(--shadow-input);
+}
+
+.urlInputField::placeholder {
+  color: var(--clr-txt-3);
+}
+
+.urlInputField:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.urlInputField:focus {
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.04);
+  box-shadow: var(--shadow-input-focus);
+}
+
+.urlInputField.isError {
+  border-color: rgba(248, 113, 113, 0.5);
+  background: rgba(248, 113, 113, 0.04);
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
+}
+
+.urlInputField.isSuccess {
+  border-color: rgba(52, 211, 153, 0.45);
+  background: rgba(52, 211, 153, 0.04);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.09);
+}
+
+/* CLEAR BUTTON */
+
+.urlInputClear {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  color: var(--clr-txt-3);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast),
+    background var(--dur-fast);
+}
+
+.urlInputClear:hover {
+  color: var(--clr-txt-1);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+/* HELPER MESSAGE */
+
+.urlInputMessage {
+  font-size: 12.5px;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.urlInputMessage.hint {
+  color: var(--clr-txt-3);
+}
+.urlInputMessage.error {
+  color: var(--clr-err);
+}
+.urlInputMessage.success {
+  color: var(--clr-success);
+}
+
+/* SUBMIT BUTTON */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  padding: 15px var(--space-8);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-smooth),
+    opacity var(--dur-base) var(--ease-smooth);
+}
+
+.btnLoading {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loadingText {
+  animation: pulse 1.5s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Top highlight shine */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.btnPrimary {
+  background: var(--grad-btn);
+  color: #020d18;
+  box-shadow: var(--shadow-btn);
+  position: relative;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  box-shadow: var(--shadow-btn-hov);
+  transform: translateY(-1px);
+}
+
+.btnPrimary:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--shadow-btn);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* --- Premium Loading State --- */
+
+.btnLoading {
+  cursor: wait;
+  opacity: 1 !important; /* Keep it bright */
+  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
+  background-size: 200% 200%;
+  animation:
+    glowingPulse 2s ease-in-out infinite,
+    shimmerBg 3s linear infinite;
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.6),
+    0 0 40px rgba(34, 211, 238, 0.2);
+}
+
+/* Shimmering highlight overlay */
+.btnLoading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerSweep 2.5s infinite;
+}
+
+@keyframes glowingPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px rgba(34, 211, 238, 0.4),
+      0 0 30px rgba(34, 211, 238, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(34, 211, 238, 0.8),
+      0 0 50px rgba(34, 211, 238, 0.3);
+    transform: scale(1.01);
+  }
+}
+
+@keyframes shimmerBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.loadingText {
+  animation: pulse 1.5s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.btnSpinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(0, 0, 0, 0.15);
+  border-top-color: #020d18;
+  border-radius: 50%;
+  animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btnFull {
+  width: 100%;
+  margin-top: var(--space-5);
+}
